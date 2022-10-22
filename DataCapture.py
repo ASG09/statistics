@@ -1,6 +1,3 @@
-from typing import Dict
-
-
 class Stats:
 
     def __init__(self, data: dict) -> None:
