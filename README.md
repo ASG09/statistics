@@ -1,5 +1,5 @@
 # statistics
-A simple statistics project.
+A simple statistics project for small integers (bellow 1000).
 
 ## Installing dependencies:
 
