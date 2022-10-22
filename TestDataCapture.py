@@ -24,16 +24,28 @@ class TestDataCapture:
         # should return 2 (6 and 9 are the only two values greater than 4)
         assert (self.stats.greater(4) == 2)
     
-    def test_type_error_str(self):
+    def test_type_error_str_one(self):
         with pytest.raises(TypeError):
             self.capture.add('a')
+    def test_type_error_str_two(self):
+        with pytest.raises(TypeError):
             self.stats.less('a')
+    def test_type_error_str_three(self):
+        with pytest.raises(TypeError):
             self.stats.between('a', 1)
+    def test_type_error_str_four(self):
+        with pytest.raises(TypeError):
             self.stats.less('a')
 
-    def test_type_error_float(self):
+    def test_type_error_floa_one(self):
         with pytest.raises(TypeError):
             self.capture.add(1.1)
+    def test_type_error_float_two(self):
+        with pytest.raises(TypeError):
             self.stats.less(1.1)
+    def test_type_error_float_three(self):
+        with pytest.raises(TypeError):
             self.stats.between(1.1, 1)
+    def test_type_error_float_four(self):
+        with pytest.raises(TypeError):
             self.stats.greater(1.1)
