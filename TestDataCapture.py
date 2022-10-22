@@ -1,4 +1,5 @@
 from DataCapture import DataCapture
+import pytest
 
 
 class TestDataCapture:
@@ -22,3 +23,17 @@ class TestDataCapture:
     def test_greater(self):
         # should return 2 (6 and 9 are the only two values greater than 4)
         assert (self.stats.greater(4) == 2)
+    
+    def test_type_error_str(self):
+        with pytest.raises(TypeError):
+            self.capture.add('a')
+            self.stats.less('a')
+            self.stats.between('a', 1)
+            self.stats.less('a')
+
+    def test_type_error_float(self):
+        with pytest.raises(TypeError):
+            self.capture.add(1.1)
+            self.stats.less(1.1)
+            self.stats.between(1.1, 1)
+            self.stats.greater(1.1)
