@@ -31,6 +31,7 @@ class Stats:
 class DataCapture:
 
     def __init__(self) -> None:
+        self.values = []
         self.data = {}
         self.data['less'] = {i: 0 for i in range(1001)}
         self.data['between'] = {i: {j: 0 for j in range(1001)} for i in range(1001)}
@@ -41,16 +42,19 @@ class DataCapture:
 
         if not isinstance(n, int):
             raise TypeError('n must be an int')
-        self.data['less'] = {i: ((self.data['less'][i] + 1) if n < i else (self.data['less'][i])) for i in range(1001)}
-        self.data['greater'] = {i: ((self.data['greater'][i] + 1) if n > i else (self.data['greater'][i])) for i in range(1001)}
-        self.data['between'] = {
-            i: {
-                j: ((self.data['between'][i][j] + 1) if (n >= i and n <= j) else (self.data['between'][i][j])) for j in range(1001)
-            } for i in range(1001)
-        }
+        self.values.append(n)
+        
 
     def build_stats(self) -> Stats:
         '''creates a stats instance'''
-        
+
+        for n in self.values:
+            self.data['less'] = {i: ((self.data['less'][i] + 1) if n < i else (self.data['less'][i])) for i in range(1001)}
+            self.data['greater'] = {i: ((self.data['greater'][i] + 1) if n > i else (self.data['greater'][i])) for i in range(1001)}
+            self.data['between'] = {
+                i: {
+                    j: ((self.data['between'][i][j] + 1) if (n >= i and n <= j) else (self.data['between'][i][j])) for j in range(1001)
+                } for i in range(1001)
+            }
         stats = Stats(self.data)
         return stats
