@@ -6,12 +6,6 @@ class Stats:
             self.data['less'] = {i: ((self.data['less'][i] + 1) if n < i else (self.data['less'][i])) for i in range(1001)}
             self.data['greater'] = {i: ((self.data['greater'][i] + 1) if n > i else (self.data['greater'][i])) for i in range(1001)}
 
-            self.data['between'] = {
-                i: {
-                    j: ((self.data['between'][i][j] + 1) if (n >= i and n <= j) else (self.data['between'][i][j])) for j in range(1001)
-                } for i in range(1001)
-            }
-
     def less(self, n: int) -> int:
         '''returns the amount of numbers added less than a given number n'''
 
@@ -24,7 +18,8 @@ class Stats:
 
         if (not isinstance(n, int) or not isinstance(m, int)):
             raise TypeError('n and m must be int')
-        return self.data['between'][n][m]
+
+        return self.data['greater'][n-1 if n!=0 else 0] - self.data['greater'][m]
 
     def greater(self, n: int) -> int:
         '''returns the amount of numbers added greater than a given number n'''
