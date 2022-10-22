@@ -35,7 +35,6 @@ class DataCapture:
         self.data = {}
         self.data['values'] = []
         self.data['less'] = {i: 0 for i in range(1001)}
-        self.data['between'] = {i: {j: 0 for j in range(1001)} for i in range(1001)}
         self.data['greater'] = {i: 0 for i in range(1001)}
 
     def add(self, n: int) -> None:
