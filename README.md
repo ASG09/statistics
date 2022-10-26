@@ -1,7 +1,7 @@
 # statistics
-A simple statistics project for small integers (bellow 1000):
+A simple statistics project for small positive integers (bellow 1000):
 
-the `DataCapture` class provide methods to add integers bellow 1000, to be queried with 3 comparisson methods (each of O(1)): 
+the `DataCapture` class provide methods to add positive integers bellow 1000, to be queried with 3 comparisson methods (each of O(1)): 
  - `less(n)`: returns the amount of numbers added, bellow the given n integer (not inclusive);
  - `between(n,m)`: returns the amount of numbers added, between the given n and m integers (inclusive);
  - `greater(n)`: returns the amount of numbers added, greater than the given n integer (not inclusive);
