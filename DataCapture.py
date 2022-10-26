@@ -1,6 +1,12 @@
 class Stats:
 
     def __init__(self, data: dict) -> None:
+        '''Builds the possible statistics results and returns a stats instance
+        
+        Keyword arguments:
+        data -- a dictionary with a list called "values", containing the numbers to be queried
+        '''
+
         self.data = data
         for n in self.data['values']:
             self.data['less'] = {
@@ -18,14 +24,23 @@ class Stats:
             }
 
     def less(self, n: int) -> int:
-        '''returns the amount of numbers added less than a given number n'''
+        '''Compare an integer with the data and returns the amount of numbers lower than it (non inclusive).
+        
+        Keyword arguments:
+        n -- the number to be queried
+        '''
 
         if not isinstance(n, int):
             raise TypeError('n must be an int')
         return self.data['less'][n]
 
     def between(self, n: int, m: int) -> int:
-        '''returns the amount of numbers added in between a given number n (inclusive) and m (inclusive)'''
+        '''Compare integers n and m with the data and returns the amount of numbers between them (inclusive).
+        
+        Keyword arguments:
+        n -- the lower number to be queried
+        m -- the greater number to be queried
+        '''
 
         if (not isinstance(n, int) or not isinstance(m, int)):
             raise TypeError('n and m must be int')
@@ -33,7 +48,11 @@ class Stats:
         return (self.greater((n-1 if n != 0 else 0))) - self.greater(m)
 
     def greater(self, n: int) -> int:
-        '''returns the amount of numbers added greater than a given number n'''
+        '''Compare an integer with the data and returns the amount of numbers greater than it (non inclusive).
+        
+        Keyword arguments:
+        n -- the number to be queried
+        '''
 
         if not isinstance(n, int):
             raise TypeError('n must be an int')
@@ -47,14 +66,18 @@ class DataCapture:
         self.data['values'] = []
 
     def add(self, n: int) -> None:
-        '''adds number to be included on the stats data'''
+        '''Adds an int to be included on the statistic calculations. Returns None
+        
+        Keyword arguments:
+        n -- the number to be added
+        '''
 
         if not isinstance(n, int):
             raise TypeError('n must be an int')
         self.data['values'].append(n)
 
     def build_stats(self) -> Stats:
-        '''creates a stats instance'''
+        '''Builds the possible statistics results and returns a stats instance, to generate the queries'''
 
         stats = Stats(self.data)
         return stats
